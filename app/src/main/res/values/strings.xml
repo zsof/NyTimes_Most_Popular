@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Blank</string>
+    <string name="btn_openBrowser">Open in Browser</string>
+    <string name="title_menu">NY Times Most Popular</string>
+</resources>
