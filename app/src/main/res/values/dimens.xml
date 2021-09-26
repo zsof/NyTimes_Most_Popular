@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zero_dp">0dp</dimen>
+    <dimen name="small_border">4dp</dimen>
+    <dimen name="medium_border">8dp</dimen>
+    <dimen name="big_50">50dp</dimen>
+    <dimen name="radious">30dip</dimen>
+    <dimen name="medium_30">30dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+</resources>
