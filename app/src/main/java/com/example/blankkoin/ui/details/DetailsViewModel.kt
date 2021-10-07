@@ -1,4 +1,3 @@
-
 package com.example.blankkoin.ui.details
 
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
@@ -10,7 +9,5 @@ class DetailsViewModel(
     fun load(articleId:Long) = execute {
         viewState = DetailsViewState(detailsPresenter.getArticles(articleId))
     }
-
-    //fun browse
 }
 

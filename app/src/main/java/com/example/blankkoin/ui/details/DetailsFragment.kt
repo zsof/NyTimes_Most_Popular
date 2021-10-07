@@ -1,12 +1,11 @@
-
 package com.example.blankkoin.ui.details
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.koin.getViewModelFromFactory
-import co.zsmb.rainbowcake.navigation.extensions.applyArgs
-import co.zsmb.rainbowcake.navigation.extensions.requireLong
 import com.bumptech.glide.Glide
 import com.example.blankkoin.R
 import com.example.blankkoin.databinding.FragmentDetailBinding
@@ -43,12 +42,16 @@ class DetailsFragment(private var articleId:Long) : KoinComponent, RainbowCakeFr
 
         binding?.let {
             Glide.with(it.detailsImage)
-                .load(articleDetails.url)
+                .load(articleDetails.imageUrl)
                 .placeholder(R.drawable.default_image)
                 .into(it.detailsImage)
         }
 
-
+        binding?.openDetailsButton?.setOnClickListener {
+            val defaultBrowse= Intent.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_BROWSER)
+            defaultBrowse.data= Uri.parse(articleDetails.url)
+            startActivity(defaultBrowse)
+        }
     }
 }
 

@@ -1,19 +1,21 @@
 package com.example.blankkoin.data
 
-import com.example.blankkoin.model.Article
+import com.example.blankkoin.model.ArticleModel
 
-fun ArticleItem.toNetworkArticle() = Article(
+fun ArticleItem.toNetworkArticle() = ArticleModel(
     id=id,
     url=url,
     byline=byline,
     title=title,
-    publishedDate=publishedDate
+    publishedDate=publishedDate,
+    imageUrl=imageUrl
 )
 
-fun Article.toDiskArticle()= ArticleItem (
+fun ArticleModel.toDiskArticle()= ArticleItem (
     id=id,
     url=url,
     byline=byline,
     title=title,
-    publishedDate=publishedDate
+    publishedDate=publishedDate,
+    imageUrl=imageUrl
 )

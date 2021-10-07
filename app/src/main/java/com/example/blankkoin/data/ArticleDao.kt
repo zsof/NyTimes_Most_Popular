@@ -4,11 +4,9 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
-import com.example.blankkoin.model.Article
 
 @Dao
 interface ArticleDao {
-
     @Query("SELECT * FROM article")
     fun getArticle(): List<ArticleItem>
 
@@ -25,5 +23,4 @@ interface ArticleDao {
     }
     @Query("SELECT * FROM article WHERE id = :articleId")
     fun getArticleById(articleId: Long): ArticleItem?
-
 }

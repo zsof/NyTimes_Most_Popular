@@ -1,8 +1,7 @@
 package com.example.blankkoin.interactor
 
-import com.example.blankkoin.data.ArticleItem
 import com.example.blankkoin.data.DiskDataSource
-import com.example.blankkoin.model.Article
+import com.example.blankkoin.model.ArticleModel
 import com.example.blankkoin.network.NetworkDataSource
 import org.koin.dsl.module
 
@@ -11,20 +10,16 @@ val ArticleInteractorModule = module {
 }
 class ArticleInteractor (private val networkDataSource: NetworkDataSource, private val diskDataSource: DiskDataSource) {
 
-    var articleId: Long=0
-    fun getArticle() : List<Article>? {
+    fun getArticle() : List<ArticleModel>? {
         return diskDataSource.getArticle()
     }
 
     suspend fun replaceArticle() {
         val article = networkDataSource.getArticle() ?: return
         diskDataSource.setArticle(article)
-
     }
 
-     fun getArticleById(articleId: Long) :Article? {
+     fun getArticleById(articleId: Long) :ArticleModel? {
         return diskDataSource.getArticleById(articleId)
     }
-
-
 }

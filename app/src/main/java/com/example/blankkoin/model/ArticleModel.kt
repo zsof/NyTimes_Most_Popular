@@ -1,13 +1,10 @@
 package com.example.blankkoin.model
 
-import com.google.gson.annotations.SerializedName
-
-data class Article(
+data class ArticleModel (
     val id: Long,
     val url: String,
     val byline: String,
     val title: String,
-    @SerializedName("published_date")
     val publishedDate: String,
-    val media: List<MediaData>
+    val imageUrl: String?
 )

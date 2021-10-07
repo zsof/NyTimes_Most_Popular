@@ -5,13 +5,10 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.koin.getViewModelFromFactory
-import co.zsmb.rainbowcake.navigation.extensions.applyArgs
 import co.zsmb.rainbowcake.navigation.navigator
 import com.example.blankkoin.R
 import com.example.blankkoin.databinding.FragmentListBinding
 import com.example.blankkoin.ui.details.DetailsFragment
-//import com.example.blankkoin.ui.details.DetailsFragment
-
 
 import org.koin.core.component.KoinComponent
 

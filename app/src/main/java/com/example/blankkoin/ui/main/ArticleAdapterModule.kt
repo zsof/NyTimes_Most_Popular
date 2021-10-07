@@ -9,17 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.blankkoin.R
 import com.example.blankkoin.databinding.ItemArticlesMainBinding
-import com.example.blankkoin.model.Article
-//import com.example.blankkoin.model.MediaMetaData
-
+import com.example.blankkoin.model.ArticleModel
 import org.koin.dsl.module
-
 
 val ArticleAdapterModule = module {
     factory { ArticleAdapter() }
 }
 
-class ArticleAdapter : ListAdapter<Article, ArticleAdapter.ArticlesViewHolder>(ArticleComparator) {
+class ArticleAdapter : ListAdapter<ArticleModel, ArticleAdapter.ArticlesViewHolder>(ArticleComparator) {
 
     var listener: Listener? = null
 
@@ -29,13 +26,14 @@ class ArticleAdapter : ListAdapter<Article, ArticleAdapter.ArticlesViewHolder>(A
 
     override fun onBindViewHolder(holder: ArticlesViewHolder, position: Int) {
         val articles = getItem(position)
+
         holder.articleItem = articles
         holder.titleMainText.text = articles.title
         holder.dateMainText.text = articles.publishedDate
         holder.byMainText.text = articles.byline
 
         Glide.with(holder.mainImage)
-            .load(articles.url)
+            .load(articles.imageUrl)
             .placeholder(R.drawable.default_image)
             .into(holder.mainImage)
     }
@@ -45,7 +43,7 @@ class ArticleAdapter : ListAdapter<Article, ArticleAdapter.ArticlesViewHolder>(A
         val byMainText: TextView = binding.byMainText
         val dateMainText: TextView = binding.dateMainText
         val mainImage: ImageView = binding.mainImage
-        var articleItem: Article? = null
+        var articleItem: ArticleModel? = null
 
         init {
             itemView.setOnClickListener {

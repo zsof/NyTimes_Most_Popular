@@ -7,7 +7,6 @@ import org.koin.dsl.module
 val DiskModule = module {
     single { provideDao(get()) }
     single { provideArticleDatabase(get()) }
-
 }
 
 fun provideDao(articleDatabase: ArticleDatabase): ArticleDao {
