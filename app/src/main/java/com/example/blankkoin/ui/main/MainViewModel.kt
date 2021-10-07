@@ -8,12 +8,14 @@ class MainViewModel(
 
     fun load() = execute {
         viewState = MainViewState(mainPresenter.getArticles())
-        mainPresenter.getArticles()
-
-
+        mainPresenter.replace()
+        viewState = MainViewState(mainPresenter.getArticles())
 
     }
 
-
-
+    fun replaceArticle()=execute {
+        viewState = viewState.copy(isRefresh = true)
+        mainPresenter.replace()
+        viewState= MainViewState(articleData = mainPresenter.getArticles(), isRefresh = false)
+    }
 }

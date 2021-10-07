@@ -1,5 +1,12 @@
 <resources>
-    <string name="app_name">Blank</string>
-    <string name="btn_openBrowser">Open in Browser</string>
-    <string name="title_menu">NY Times Most Popular</string>
+    <string name="app_name">NyTimes Most Popular</string>
+    <string name="btn_open_browser">Open in Browser</string>
+    <string name="title_list">NY Times Most Popular</string>
+    <string name="title_main">Title</string>
+    <string name="by_main">By</string>
+    <string name="date_main">Date</string>
+    <string name="by_details">by</string>
+    <string name="title_details">Title</string>
+    <string name="button">Button</string>
+    <string name="megnyit_s">Megnyitás</string>
 </resources>
