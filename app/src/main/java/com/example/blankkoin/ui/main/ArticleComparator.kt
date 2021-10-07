@@ -1,15 +1,15 @@
 package com.example.blankkoin.ui.main
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.blankkoin.model.ArticlesData
+import com.example.blankkoin.model.Article
 
 
-object ArticleComparator : DiffUtil.ItemCallback<MainPresenter.ArticlesPresenterData>() {
-    override fun areItemsTheSame(oldItem: MainPresenter.ArticlesPresenterData, newItem: MainPresenter.ArticlesPresenterData): Boolean {
+object ArticleComparator : DiffUtil.ItemCallback<Article>() {
+    override fun areItemsTheSame(oldItem:Article, newItem: Article): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: MainPresenter.ArticlesPresenterData, newItem: MainPresenter.ArticlesPresenterData): Boolean {
+    override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
         return oldItem == newItem
     }
 }

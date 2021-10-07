@@ -1,7 +1,8 @@
 package com.example.blankkoin.ui.main
 
+import com.example.blankkoin.model.Article
 
 data class MainViewState(
-    var articleData: List<MainPresenter.ArticlesPresenterData> = emptyList()
-
+    val articleData: List<Article> = emptyList(),
+    var isRefresh: Boolean = false
 )
