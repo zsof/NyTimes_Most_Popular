@@ -41,9 +41,9 @@ class ArticleAdapter : ListAdapter<ArticleModel, ArticleAdapter.ArticlesViewHold
     }
 
     inner class ArticlesViewHolder(binding: ItemArticlesMainBinding) : RecyclerView.ViewHolder(binding.root) {
-        val titleMainText: TextView = binding.titleMainText
-        val byMainText: TextView = binding.byMainText
-        val dateMainText: TextView = binding.dateMainText
+        val titleMainText: TextView = binding.titleText
+        val byMainText: TextView = binding.byText
+        val dateMainText: TextView = binding.dateText
         val mainImage: ImageView = binding.mainImage
         var articleItem: ArticleModel? = null
 

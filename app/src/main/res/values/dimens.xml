@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="small_border">4dp</dimen>
-    <dimen name="medium_border">8dp</dimen>
-    <dimen name="radios">30dp</dimen>
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="margin_item_main">8dp</dimen>
 </resources>
