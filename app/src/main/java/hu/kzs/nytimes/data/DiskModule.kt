@@ -2,6 +2,7 @@ package hu.kzs.nytimes.data
 
 import android.content.Context
 import androidx.room.Room
+import hu.kzs.nytimes.data.dao.ArticleDao
 import org.koin.dsl.module
 
 val DiskModule = module {
@@ -10,7 +11,7 @@ val DiskModule = module {
 }
 
 fun provideDao(articleDatabase: ArticleDatabase): ArticleDao {
-    return articleDatabase.articleItemDao()
+    return articleDatabase.articleDao()
 }
 
 fun provideArticleDatabase(context: Context): ArticleDatabase {

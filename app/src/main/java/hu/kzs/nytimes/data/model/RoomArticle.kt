@@ -1,10 +1,10 @@
-package hu.kzs.nytimes.data
+package hu.kzs.nytimes.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "article")
-data class ArticleItem(
+data class RoomArticle(
     @PrimaryKey
     var id: Long,
     val url: String,

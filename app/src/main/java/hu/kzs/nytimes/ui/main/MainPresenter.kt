@@ -7,7 +7,8 @@ import hu.kzs.nytimes.model.ArticleModel
 class MainPresenter (private val articleInteractor: ArticleInteractor) {
 
     suspend fun getArticles(): List<ArticleModel> = withIOContext {
-        val articles = articleInteractor.getArticle() ?: return@withIOContext emptyList<ArticleModel>()
+        val articles =
+            articleInteractor.getArticles() ?: return@withIOContext emptyList<ArticleModel>()
 
         articles.map {
             ArticleModel(
@@ -22,7 +23,7 @@ class MainPresenter (private val articleInteractor: ArticleInteractor) {
     }
 
     suspend fun replace() = withIOContext {
-        articleInteractor.replaceArticle()
+        articleInteractor.refreshArticles()
     }
 }
 
