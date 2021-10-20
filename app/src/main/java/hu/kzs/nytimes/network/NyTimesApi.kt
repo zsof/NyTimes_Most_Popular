@@ -1,6 +1,6 @@
 package hu.kzs.nytimes.network
 
-import hu.kzs.nytimes.model.GetArticlesData
+import hu.kzs.nytimes.model.GetArticlesResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -13,6 +13,6 @@ interface NyTimesApi {
 
     @GET("viewed/1.json")
     suspend fun getArticles(
-        @Query("api-key") apiKey :String = KEY
-    ): GetArticlesData
+        @Query("api-key") apiKey: String = KEY
+    ): GetArticlesResponse
 }

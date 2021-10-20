@@ -1,4 +1,4 @@
-package hu.kzs.nytimes.model
+package hu.kzs.nytimes.network.model
 
 data class MediaMetaData(
     val url: String?,
@@ -6,5 +6,3 @@ data class MediaMetaData(
     val width: Int?,
     val height: Int?
 )
-
-

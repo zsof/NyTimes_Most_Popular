@@ -1,4 +1,4 @@
-package hu.kzs.nytimes.model
+package hu.kzs.nytimes.network.model
 
 import com.google.gson.annotations.SerializedName
 
@@ -7,7 +7,4 @@ data class MediaData(
     val caption: String?,
     @SerializedName("media-metadata")
     val mediaMetadata: List<MediaMetaData>
-
 )
-
-

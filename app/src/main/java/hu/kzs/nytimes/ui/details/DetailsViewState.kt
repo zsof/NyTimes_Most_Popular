@@ -1,7 +1,7 @@
 package hu.kzs.nytimes.ui.details
 
-import hu.kzs.nytimes.model.ArticleModel
+import hu.kzs.nytimes.model.Article
 
 data class DetailsViewState(
-    val detailArticle: ArticleModel?=null
+    val detailArticle: Article? = null
 )

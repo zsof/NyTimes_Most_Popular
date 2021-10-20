@@ -4,7 +4,7 @@ import hu.kzs.nytimes.data.model.RoomArticle
 import hu.kzs.nytimes.data.dao.ArticleDao
 import hu.kzs.nytimes.data.toDiskArticle
 import hu.kzs.nytimes.data.toNetworkArticle
-import hu.kzs.nytimes.model.ArticleModel
+import hu.kzs.nytimes.model.Article
 import org.koin.dsl.module
 
 val DiskDataSourceModule = module {
@@ -12,15 +12,15 @@ val DiskDataSourceModule = module {
 }
 
 class DiskDataSource(private val articleDao: ArticleDao) {
-    fun getArticles(): List<ArticleModel> {
+    fun getArticles(): List<Article> {
         return articleDao.getArticles().map(RoomArticle::toNetworkArticle)
     }
 
-    fun refreshArticles(articles: List<ArticleModel>) {
-        articleDao.addArticles(articles.map(ArticleModel::toDiskArticle))
+    fun refreshArticles(articles: List<Article>) {
+        articleDao.addArticles(articles.map(Article::toDiskArticle))
     }
 
-    fun getArticleById(articleId: Long): ArticleModel? {
+    fun getArticleById(articleId: Long): Article? {
         return articleDao.getArticleById(articleId)?.let(RoomArticle::toNetworkArticle)
     }
 }

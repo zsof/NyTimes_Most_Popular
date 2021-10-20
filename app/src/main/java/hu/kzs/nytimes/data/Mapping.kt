@@ -1,9 +1,9 @@
 package hu.kzs.nytimes.data
 
 import hu.kzs.nytimes.data.model.RoomArticle
-import hu.kzs.nytimes.model.ArticleModel
+import hu.kzs.nytimes.model.Article
 
-fun RoomArticle.toNetworkArticle() = ArticleModel(
+fun RoomArticle.toNetworkArticle() = Article(
     id = id,
     url = url,
     byline = byline,
@@ -12,7 +12,7 @@ fun RoomArticle.toNetworkArticle() = ArticleModel(
     imageUrl = imageUrl
 )
 
-fun ArticleModel.toDiskArticle() = RoomArticle(
+fun Article.toDiskArticle() = RoomArticle(
     id = id,
     url = url,
     byline = byline,

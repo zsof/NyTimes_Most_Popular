@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import hu.kzs.nytimes.model.ArticleModel
+import hu.kzs.nytimes.model.Article
 import hu.kzs.nytimes.R
 import hu.kzs.nytimes.databinding.ItemArticlesMainBinding
 import org.koin.dsl.module
@@ -16,14 +16,20 @@ val ArticleAdapterModule = module {
     factory { ArticleAdapter() }
 }
 
-class ArticleAdapter : ListAdapter<ArticleModel, ArticleAdapter.ArticlesViewHolder>(
+class ArticleAdapter : ListAdapter<Article, ArticleAdapter.ArticlesViewHolder>(
     ArticleComparator
 ) {
 
     var listener: Listener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticlesViewHolder {
-        return ArticlesViewHolder(ItemArticlesMainBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ArticlesViewHolder(
+            ItemArticlesMainBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ArticlesViewHolder, position: Int) {
@@ -45,7 +51,7 @@ class ArticleAdapter : ListAdapter<ArticleModel, ArticleAdapter.ArticlesViewHold
         val byMainText: TextView = binding.byText
         val dateMainText: TextView = binding.dateText
         val mainImage: ImageView = binding.mainImage
-        var articleItem: ArticleModel? = null
+        var articleItem: Article? = null
 
         init {
             itemView.setOnClickListener {
