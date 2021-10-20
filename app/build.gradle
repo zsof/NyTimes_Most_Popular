@@ -43,14 +43,12 @@ dependencies {
 
     // Retrofit
     def retrofit_version = '2.9.0'
+    def oktthp_version='4.9.2'
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.2'
 
     //Gson
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-
-    // OkHttp
-    implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.2"
-    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
 
     // Room
     def room_version = "2.3.0"
