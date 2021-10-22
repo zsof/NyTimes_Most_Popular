@@ -4,10 +4,9 @@ import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 
 class DetailsViewModel(
     private val detailsPresenter: DetailsPresenter
-) : RainbowCakeViewModel<DetailsViewState>(DetailsViewState()) {
+) : RainbowCakeViewModel<DetailsViewState>(Loading) {
 
-    fun load(articleId:Long) = execute {
-        viewState = DetailsViewState(detailsPresenter.getArticles(articleId))
+    fun load(articleId: Long) = execute {
+        viewState = ArticleLoad(detailsPresenter.getArticle(articleId))
     }
 }
-

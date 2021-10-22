@@ -9,10 +9,9 @@ import co.zsmb.rainbowcake.navigation.navigator
 import hu.kzs.nytimes.R
 import hu.kzs.nytimes.databinding.FragmentListBinding
 import hu.kzs.nytimes.ui.details.DetailsFragment
-
 import org.koin.core.component.KoinComponent
 
-class MainFragment : KoinComponent, RainbowCakeFragment<MainViewState, MainViewModel>(), ArticleAdapter.Listener{
+class MainFragment : KoinComponent, RainbowCakeFragment<MainViewState, MainViewModel>() {
 
     override fun provideViewModel() = getViewModelFromFactory()
     override fun getViewResource() = R.layout.fragment_list
@@ -22,7 +21,7 @@ class MainFragment : KoinComponent, RainbowCakeFragment<MainViewState, MainViewM
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding= FragmentListBinding.bind(view)
+        binding = FragmentListBinding.bind(view)
         setupRecyclerView()
     }
 
@@ -31,23 +30,38 @@ class MainFragment : KoinComponent, RainbowCakeFragment<MainViewState, MainViewM
         viewModel.load()
     }
 
-    override fun render(viewState: MainViewState) {
-        adapter.submitList(viewState.articleData)
-        binding?.swipeRefreshLayout?.isRefreshing = viewState.isRefresh
+    override fun render(viewState: MainViewState) = with(binding) {
+        if (this == null) return@with
+
+        when (viewState) {
+            is ArticlesReady -> {
+                adapter.submitList(viewState.articlesData)
+                swipeRefreshLayout.isRefreshing = viewState.isRefresh
+            }
+            else -> return
+        }
     }
 
-    override fun onItemSelected(articleId: Long) {
+    private fun onItemSelected(articleId: Long) {
         navigator?.add(DetailsFragment(articleId))
     }
 
-    private fun setupRecyclerView() {
-        adapter= ArticleAdapter()
-        binding!!.mainRecyclerView.adapter = adapter
-        adapter.listener = this
+    private fun setupRecyclerView() = with(binding) {
+        if (this == null) return@with
+        adapter = ArticleAdapter()
+        mainRecyclerView.adapter = adapter
+        adapter.setOnArticleClickedListener { articleId ->
+            onItemSelected(articleId)
+        }
 
-        binding?.swipeRefreshLayout?.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
-        binding?.swipeRefreshLayout?.setOnRefreshListener {
-            viewModel.replaceArticle()
+        swipeRefreshLayout.setColorSchemeColors(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.colorPrimary
+            )
+        )
+        swipeRefreshLayout.setOnRefreshListener {
+            viewModel.refreshArticle()
         }
     }
 }

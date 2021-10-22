@@ -7,23 +7,10 @@ import hu.kzs.nytimes.model.Article
 class MainPresenter (private val articleInteractor: ArticleInteractor) {
 
     suspend fun getArticles(): List<Article> = withIOContext {
-        val articles =
-            articleInteractor.getArticles() ?: return@withIOContext emptyList<Article>()
-
-        articles.map {
-            Article(
-                id = it.id,
-                title = it.title,
-                byline = it.byline,
-                publishedDate = it.publishedDate,
-                url = it.url,
-                imageUrl = it.imageUrl
-            )
-        }
+        articleInteractor.getArticles()!!
     }
 
-    suspend fun replace() = withIOContext {
+    suspend fun refresh() = withIOContext {
         articleInteractor.refreshArticles()
     }
 }
-

@@ -4,18 +4,17 @@ import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 
 class MainViewModel(
     private val mainPresenter: MainPresenter
-) : RainbowCakeViewModel<MainViewState>(MainViewState()) {
+) : RainbowCakeViewModel<MainViewState>(Initial) {
 
     fun load() = execute {
-        viewState = MainViewState(mainPresenter.getArticles())
-        mainPresenter.replace()
-        viewState = MainViewState(mainPresenter.getArticles())
+        viewState = ArticlesReady(mainPresenter.getArticles())
+        mainPresenter.refresh()
+        viewState = ArticlesReady(mainPresenter.getArticles())
 
     }
 
-    fun replaceArticle()=execute {
-        viewState = viewState.copy(isRefresh = true)
-        mainPresenter.replace()
-        viewState= MainViewState(articleData = mainPresenter.getArticles(), isRefresh = false)
+    fun refreshArticle() = execute {
+        mainPresenter.refresh()
+        viewState = ArticlesReady(articlesData = mainPresenter.getArticles(), isRefresh = false)
     }
 }

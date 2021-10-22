@@ -2,7 +2,11 @@ package hu.kzs.nytimes.ui.main
 
 import hu.kzs.nytimes.model.Article
 
-data class MainViewState(
-    val articleData: List<Article> = emptyList(),
-    var isRefresh: Boolean = false
-)
+sealed class MainViewState
+
+object Initial : MainViewState()
+
+data class ArticlesReady(
+    val articlesData: List<Article>,
+    val isRefresh: Boolean = false
+) : MainViewState()

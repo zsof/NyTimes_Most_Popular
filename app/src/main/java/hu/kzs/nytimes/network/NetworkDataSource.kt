@@ -25,7 +25,6 @@ class NetworkDataSource (private val api: NyTimesApi) {
             return null
         }
 
-
         return articles.results.map { it ->
             val imageData = it.media.find { it.type == IMAGE_TYPE }?.mediaMetadata
 

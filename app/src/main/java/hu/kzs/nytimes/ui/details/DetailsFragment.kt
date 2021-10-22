@@ -9,11 +9,11 @@ import co.zsmb.rainbowcake.koin.getViewModelFromFactory
 import com.bumptech.glide.Glide
 import hu.kzs.nytimes.R
 import hu.kzs.nytimes.databinding.FragmentDetailBinding
-
-
+import hu.kzs.nytimes.model.Article
 import org.koin.core.component.KoinComponent
 
-class DetailsFragment(private var articleId:Long) : KoinComponent, RainbowCakeFragment<DetailsViewState, DetailsViewModel>() {
+class DetailsFragment(private var articleId: Long) : KoinComponent,
+    RainbowCakeFragment<DetailsViewState, DetailsViewModel>() {
     override fun provideViewModel() = getViewModelFromFactory()
     override fun getViewResource() = R.layout.fragment_detail
 
@@ -21,7 +21,7 @@ class DetailsFragment(private var articleId:Long) : KoinComponent, RainbowCakeFr
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding= FragmentDetailBinding.bind(view)
+        binding = FragmentDetailBinding.bind(view)
     }
 
     override fun onStart() {
@@ -30,28 +30,31 @@ class DetailsFragment(private var articleId:Long) : KoinComponent, RainbowCakeFr
     }
 
     override fun render(viewState: DetailsViewState) {
-        articleDetail(viewState)
+        when (viewState) {
+            is ArticleLoad -> {
+                viewState.detailArticle?.let { setupArticleDetails(it) }
+            }
+            else -> return
+        }
     }
 
-    private fun articleDetail(detailsViewState: DetailsViewState) {
-        val articleDetails = detailsViewState.detailArticle ?: return
+    private fun setupArticleDetails(article: Article) = with(binding) {
+        if (this == null) return@with
 
-        binding?.titleDetailsText?.text=articleDetails.title
-        binding?.byDetailsText?.text=articleDetails.byline
-        binding?.dateDetailsText?.text=articleDetails.publishedDate
+        titleDetailsText.text = article.title
+        byDetailsText.text = article.byline
+        dateDetailsText.text = article.publishedDate
 
-        binding?.let {
-            Glide.with(it.detailsImage)
-                .load(articleDetails.imageUrl)
-                .placeholder(R.drawable.default_image)
-                .into(it.detailsImage)
-        }
+        Glide.with(detailsImage)
+            .load(article.imageUrl)
+            .placeholder(R.drawable.default_image)
+            .into(detailsImage)
 
-        binding?.openDetailsButton?.setOnClickListener {
-            val defaultBrowse= Intent.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_BROWSER)
-            defaultBrowse.data= Uri.parse(articleDetails.url)
+        openDetailsButton.setOnClickListener {
+            val defaultBrowse =
+                Intent.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_BROWSER)
+            defaultBrowse.data = Uri.parse(article.url)
             startActivity(defaultBrowse)
         }
     }
 }
-

@@ -1,4 +1,4 @@
-package com.example.blankkoin.ui
+package hu.kzs.nytimes.ui
 
 import hu.kzs.nytimes.ui.details.DetailsPresenter
 import hu.kzs.nytimes.ui.details.DetailsViewModel
